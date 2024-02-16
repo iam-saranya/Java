@@ -1,0 +1,23 @@
+class Solution {
+    public Node flattenBST(Node root) {
+        // Code here
+        if(root==null)return root;
+        Node temp=flattenBST(root.left);
+        Node temp2=root.right=flattenBST(root.right);
+        if(temp==null && temp2==null)return root;
+        
+        if(temp!=null){
+            Node left=temp;
+            while(temp.right!=null){
+                temp=temp.right;
+            }
+            temp.right=root;
+            root.left=null;
+            return left;
+        }else{
+            return root;
+        }
+        
+    }
+}
+
